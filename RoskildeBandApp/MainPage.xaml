@@ -14,6 +14,6 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView x:Name="listView" HorizontalAlignment="Left" Height="634" Margin="92,68,0,0" VerticalAlignment="Top" Width="383" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}"/>
-        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="49" Margin="580,152,0,0" TextWrapping="Wrap" Text="{Binding NewBand.BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231"/>
+        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="49" Margin="580,152,0,0" TextWrapping="Wrap" Text="{Binding NewBand.BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn"/>
     </Grid>
 </Page>

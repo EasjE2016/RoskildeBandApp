@@ -39,9 +39,14 @@ namespace RoskildeBandApp.ModelView
         {
             Bandliste = new Model.BandList();
             selectedBand = new Model.Band();
-
+            AddBandCommand = new RelayCommand(AddNewBand);
         }
+        public RelayCommand AddBandCommand { get; set; }
 
+        public void AddNewBand()
+        {
+            Bandliste.Add(NewBand);
+        }
 
     }
 }
