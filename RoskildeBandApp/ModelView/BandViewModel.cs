@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using RoskildeBandApp.Model;
 
 namespace RoskildeBandApp.ModelView
 {
@@ -18,6 +19,8 @@ namespace RoskildeBandApp.ModelView
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
+
+        public AddBandCommand AddBandCommand { get; set; }
 
         public Model.BandList Bandliste { get; set; }
 
@@ -39,14 +42,17 @@ namespace RoskildeBandApp.ModelView
         {
             Bandliste = new Model.BandList();
             selectedBand = new Model.Band();
-            AddBandCommand = new RelayCommand(AddNewBand);
+            AddBandCommand = new AddBandCommand(AddNewBand);
+            NewBand = new Model.Band();
+            //AddBandCommand = new RelayCommand(AddNewBand);
         }
-        public RelayCommand AddBandCommand { get; set; }
+        //public RelayCommand AddBandCommand { get; set; }
 
         public void AddNewBand()
         {
             Bandliste.Add(NewBand);
         }
+
 
     }
 }
