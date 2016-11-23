@@ -29,5 +29,6 @@
         <Button x:Name="save" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="371.333,567,0,0" VerticalAlignment="Top" Width="125" Command="{Binding SaveBandCommand, Mode=OneWay}"/>
         <Button x:Name="hent" Content="Hent" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="578.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding HentBandCommand, Mode=OneWay}"/>
         <Button x:Name="Clear" Content="Clear liste" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="187.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding DeleteAllBandCommand, Mode=OneWay}"/>
+        <Button x:Name="TestData" Content="Add test data" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="187.333,671,0,0" VerticalAlignment="Top" Width="116" Command="{Binding AddTestCommand, Mode=OneWay}"/>
     </Grid>
 </Page>
