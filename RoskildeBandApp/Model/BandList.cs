@@ -14,8 +14,8 @@ namespace RoskildeBandApp.Model
             :base()
         {
             //sample data
-            Band band1 = new Band();
-            band1.BandNavn = "";
+            //Band band1 = new Band();
+            //band1.BandNavn = "";
 
             AddTestData();
 
@@ -52,10 +52,10 @@ namespace RoskildeBandApp.Model
         {
 
             //TODO fejlhåndtering 
-            this.ClearItems();
+            //this./*ClearItems*/();
+            this.Clear();
 
-
-            foreach (var band in JsonConvert.DeserializeObject<BandList>(jsonText))
+            foreach (var band in JsonConvert.DeserializeObject<List<Band>>(jsonText))
             {
                 this.Add(band);
             }
