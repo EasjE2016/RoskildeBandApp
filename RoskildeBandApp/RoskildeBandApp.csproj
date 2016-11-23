@@ -98,8 +98,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelView\AddBandCommand.cs" />
-    <Compile Include="ModelView\BandViewModel.cs" />
+    <Compile Include="ViewModel\AddBandCommand.cs" />
+    <Compile Include="ViewModel\BandViewModel.cs" />
     <Compile Include="Model\Band.cs" />
     <Compile Include="Model\BandList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
