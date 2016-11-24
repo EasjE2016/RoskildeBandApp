@@ -130,7 +130,8 @@ namespace RoskildeBandApp.ModelView
         }
 
         /// <summary>
-        /// Tak til Filips far :-)
+        /// Tak til Filips far :-) og Filip som havde løsningen og Rudi som 
+        /// insiterede på at der var en fejl !
         /// </summary>
         public void AddNewBand()
         {
