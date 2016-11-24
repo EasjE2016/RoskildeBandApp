@@ -82,7 +82,12 @@ namespace RoskildeBandApp.ModelView
 
         public async void HentdataFraDiskAsync()
         {
+            this.Bandliste.Clear();
 
+            StorageFile file = await localfolder.GetFileAsync(filnavn);
+            string jsonText = await FileIO.ReadTextAsync(file);
+
+            Bandliste.IndsætJson(jsonText);
         }
 
         /// <summary>
@@ -90,6 +95,8 @@ namespace RoskildeBandApp.ModelView
         /// </summary>
         public async void GemDataTilDiskAsync()
         {
+
+
             string jsonText = this.Bandliste.GetJson();
             StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, jsonText);
