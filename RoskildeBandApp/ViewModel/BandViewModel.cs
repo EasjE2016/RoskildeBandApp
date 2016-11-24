@@ -65,8 +65,18 @@ namespace RoskildeBandApp.ModelView
 
             //bruger en anonym metode i min relaycommand
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
-            
+
+            string json1 = GetBandListAsJson();
+
+            string json2 = this.Bandliste.GetJson();
         }
+
+        public string  GetBandListAsJson()
+        {
+            string jsonText = JsonConvert.SerializeObject(Bandliste);
+            return jsonText;
+        }
+
 
         public void AddNewBand()
         {
