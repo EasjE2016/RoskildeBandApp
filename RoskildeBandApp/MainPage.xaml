@@ -7,30 +7,51 @@
     xmlns:ModelView="using:RoskildeBandApp.ModelView"
     x:Class="RoskildeBandApp.MainPage"
     mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush ImageSource="ms-appx:///Assets/2_lines_Orange.png" Stretch="Uniform"/>
+    </Page.Background>
 
     <Page.DataContext>
         <ModelView:BandViewModel/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/rf_orange_scene_pr__christian_hjorth-1200px.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="209*"/>
             <ColumnDefinition Width="1231*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="634" Margin="92,68,0,0" VerticalAlignment="Top" Width="250" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2">
-            <!--<DataTemplate>
-                <TextBlock>
-                </TextBlock>
-            </DataTemplate>-->
-        </ListView>
-        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="371.333,152,0,0" TextWrapping="Wrap" Text="{Binding BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1"/>
-        <Button x:Name="add" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="513.333,437,0,0" VerticalAlignment="Top" Command="{Binding AddBandCommand}" Height="32" Width="89"/>
-        <Button x:Name="slet" Content="Slet" Grid.Column="1" HorizontalAlignment="Left" Margin="371.333,437,0,0" VerticalAlignment="Top" Height="32" Command="{Binding DeleteBandCommand, Mode=OneWay}" Width="84"/>
-        <Button x:Name="save" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="371.333,567,0,0" VerticalAlignment="Top" Width="125" Command="{Binding SaveBandCommand, Mode=OneWay}"/>
-        <Button x:Name="hent" Content="Hent" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="578.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding HentDataCommand, Mode=OneWay}"/>
-        <Button x:Name="Clear" Content="Clear liste" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="187.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding DeleteAllBandCommand, Mode=OneWay}"/>
-        <TextBox x:Name="TBScene" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="629.333,180,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="187" PlaceholderText="Scene"/>
-        <TextBox x:Name="TBAnmeldelse" Grid.Column="1" HorizontalAlignment="Left" Height="104" Margin="371.333,280,0,0" TextWrapping="Wrap" Text="{Binding anmeldelse, Mode=TwoWay}" VerticalAlignment="Top" Width="445" PlaceholderText="Anmeldelse"/>
-        <TimePicker Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="842.333,180,0,0" VerticalAlignment="Top" Width="72"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="362" Margin="129,68,0,0" VerticalAlignment="Top" Width="213" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B"/>
+        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="171.333,40,0,0" TextWrapping="Wrap" Text="{Binding BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1" Opacity="0.9" BorderBrush="#FFB96737" Foreground="#FF268017" Background="#FFFB761B"/>
+        <Button x:Name="add" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="171.333,282,0,0" VerticalAlignment="Top" Command="{Binding AddBandCommand}" Height="57" Width="89" FontWeight="Bold" FontSize="18">
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Assets/Basic_Canopy_orange.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="slet" Content="Slet" Grid.Column="1" HorizontalAlignment="Left" Margin="783.333,282,0,0" VerticalAlignment="Top" Height="57" Command="{Binding DeleteBandCommand, Mode=OneWay}" Width="90" FontWeight="Bold" FontSize="18">
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Assets/Basic_Canopy_orange.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="save" Content="Save" HorizontalAlignment="Left" Height="51" Margin="33.333,435,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="hent" Content="Hent" HorizontalAlignment="Left" Height="51" Margin="129,435,0,0" VerticalAlignment="Top" Width="100" Command="{Binding HentDataCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Clear" Content="Clear liste" HorizontalAlignment="Left" Height="51" Margin="24,379,0,0" VerticalAlignment="Top" Width="105" Command="{Binding DeleteAllBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="TBScene" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="171.333,177,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="Scene" Background="#FFFB761B"/>
+        <TextBox x:Name="TBAnmeldelse" Grid.Column="1" HorizontalAlignment="Left" Height="185" Margin="428.333,68,0,0" TextWrapping="Wrap" Text="{Binding anmeldelse, Mode=TwoWay}" VerticalAlignment="Top" Width="445" PlaceholderText="Anmeldelse" Background="#FFFB761B" Foreground="WhiteSmoke" BorderBrush="#FFD31616"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="71" Margin="345.333,282,0,0" TextWrapping="Wrap" Text="{Binding SelectedBand, Mode=TwoWay}" VerticalAlignment="Top" Width="426" FontSize="22" FontFamily="Yu Gothic UI Semibold" Grid.Column="1" FontWeight="Bold" SelectionHighlightColor="#FF28628F" Foreground="#FFFB761B"/>
     </Grid>
 </Page>

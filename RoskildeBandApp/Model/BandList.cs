@@ -51,8 +51,19 @@ namespace RoskildeBandApp.Model
             {
                 this.Add(band);
             }
+        }
 
 
+        public bool FindesNavn(string navn)
+        {
+            foreach (var band in this)
+            {
+                if (band.BandNavn == navn)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

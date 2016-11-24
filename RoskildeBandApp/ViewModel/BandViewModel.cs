@@ -15,17 +15,9 @@ namespace RoskildeBandApp.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyname)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
-        }
 
         public AddBandCommand AddBandCommand { get; set; }
 
-        //public BandList Bandliste { get; set; }
         //i et backing field for en property er det ok at bruge _(underscore)
         private BandList _bandliste;
         public BandList Bandliste
@@ -41,20 +33,18 @@ namespace RoskildeBandApp.ModelView
 
         private Band selectedBand;
 
-        public Model.Band SelectedBand
+        public Band SelectedBand
         {
             get { return selectedBand; }
             set { selectedBand = value;
                 OnPropertyChanged(nameof(SelectedBand));
             }
         }
-       // public Band NewBand { get; set; }
 
         public string BandNavn { get; set; }
         public string Scene { get; set; }
         public DateTime Tid { get; set; }
         public string anmeldelse { get; set; }
-
         public string Band { get; set; }
 
         public RelayCommand DeleteBandCommand { get; private set; }
@@ -64,26 +54,21 @@ namespace RoskildeBandApp.ModelView
         public RelayCommand HentDataCommand { get; private set; }
 
         StorageFolder localfolder = null;
-
-        private readonly string filnavn = "JsonText.jsonNY1";
+        private readonly string filnavn = "JsonText.json";
 
         public BandViewModel()
         {
-            Bandliste = new Model.BandList();
-            selectedBand = new Model.Band();
+            Tid = new DateTime();
+            Bandliste = new BandList();
+            selectedBand = new Band();
             AddBandCommand = new AddBandCommand(AddNewBand);
-            //NewBand = new Model.Band();
             DeleteBandCommand = new RelayCommand(DeleteBand);
-
             SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
 
             //bruger en anonym metode i min relaycommand
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
-
             HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
-
             localfolder = ApplicationData.Current.LocalFolder;
-
         }
 
 
@@ -109,25 +94,11 @@ namespace RoskildeBandApp.ModelView
         /// </summary>
         public async void GemDataTilDiskAsync()
         {
-
-
             string jsonText = this.Bandliste.GetJson();
             StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, jsonText);
         }
 
-        public bool Findes(string navn)
-        {
-            foreach (var band in Bandliste)
-            {
-                if (band.BandNavn == navn)
-                {
-                    return true;
-                }
-            }
-            return false;
-
-        }
 
         /// <summary>
         /// Tak til Filips far :-) og Filip som havde løsningen og Rudi som 
@@ -142,8 +113,7 @@ namespace RoskildeBandApp.ModelView
                 BandNavn = this.BandNavn,
                 Scene = this.Scene,
                 anmeldelse = this.anmeldelse,
-                Tid = this.Tid
-            };
+             };
             Bandliste.Add(addBand);
 
         }
@@ -153,16 +123,12 @@ namespace RoskildeBandApp.ModelView
             Bandliste.Remove(SelectedBand);
         }
 
-        private class MessageDialogHelper
+        protected virtual void OnPropertyChanged(string propertyname)
         {
-            public static async void Show(string content, string title)
+            if (PropertyChanged != null)
             {
-                MessageDialog messageDialog = new MessageDialog(content, title);
-                await messageDialog.ShowAsync();
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
-
-
-
     }
 }
