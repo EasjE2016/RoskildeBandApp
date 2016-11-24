@@ -15,7 +15,6 @@ namespace RoskildeBandApp.ViewModel
         public ViewModel1()
         {
             string json = this.GetBandlisteasJson();
-
             string json2 = minNyeBandliste.GetJson();
 
         }
@@ -29,6 +28,4 @@ namespace RoskildeBandApp.ViewModel
 
     }
 
-
-}
 }

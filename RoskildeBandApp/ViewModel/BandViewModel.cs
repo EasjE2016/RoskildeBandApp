@@ -55,6 +55,11 @@ namespace RoskildeBandApp.ModelView
         public RelayCommand HentBandCommand { get; private set; }
         public RelayCommand DeleteAllBandCommand { get; private set; }
 
+
+        StorageFolder localfolder = null;
+
+        private readonly string filnavn = "JsonText.json";
+
         public BandViewModel()
         {
             Bandliste = new Model.BandList();
@@ -63,20 +68,25 @@ namespace RoskildeBandApp.ModelView
             NewBand = new Model.Band();
             DeleteBandCommand = new RelayCommand(DeleteBand);
 
+            SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
+
             //bruger en anonym metode i min relaycommand
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
 
-            string json1 = GetBandListAsJson();
+            localfolder = ApplicationData.Current.LocalFolder;
 
-            string json2 = this.Bandliste.GetJson();
         }
 
-        public string  GetBandListAsJson()
+
+        /// <summary>
+        /// Gemmer json data fra liste i localfolder
+        /// </summary>
+        public async void GemDataTilDiskAsync()
         {
-            string jsonText = JsonConvert.SerializeObject(Bandliste);
-            return jsonText;
+            string jsonText = this.Bandliste.GetJson();
+            StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, jsonText);
         }
-
 
         public void AddNewBand()
         {
