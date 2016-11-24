@@ -114,8 +114,10 @@
   <ItemGroup>
     <Content Include="Assets\2_lines_Orange.png" />
     <Content Include="Assets\Basic_Canopy_orange.png" />
+    <Content Include="Assets\Basic_Canopy_white.png" />
     <Content Include="Assets\rf_audience_christian-hjorth-1200px.jpg" />
     <Content Include="Assets\rf_orange_scene_pr__christian_hjorth-1200px.jpg" />
+    <Content Include="Assets\year_Black.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

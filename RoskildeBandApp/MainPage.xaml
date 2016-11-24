@@ -47,7 +47,7 @@
         </Button>
         <Button x:Name="Clear" Content="Clear liste" HorizontalAlignment="Left" Height="51" Margin="24,379,0,0" VerticalAlignment="Top" Width="105" Command="{Binding DeleteAllBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16">
             <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
+                <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_white.png"/>
             </Button.Background>
         </Button>
         <TextBox x:Name="TBScene" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="171.333,177,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="Scene" Background="#FFFB761B"/>
