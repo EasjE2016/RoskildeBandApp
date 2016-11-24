@@ -72,7 +72,7 @@ namespace RoskildeBandApp.ModelView
             Bandliste = new Model.BandList();
             selectedBand = new Model.Band();
             AddBandCommand = new AddBandCommand(AddNewBand);
-            NewBand = new Model.Band();
+            //NewBand = new Model.Band();
             DeleteBandCommand = new RelayCommand(DeleteBand);
 
             SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
@@ -134,18 +134,17 @@ namespace RoskildeBandApp.ModelView
         /// </summary>
         public void AddNewBand()
         {
-            
-            Band tempBand = new Band();
-            tempBand.BandNavn = this.BandNavn;
+            //nyt objekt ud fra de værdier som er i de fire properties som
+            //er bundet til mit view
+            Band addBand = new Band()
+            {
+                BandNavn = this.BandNavn,
+                Scene = this.Scene,
+                anmeldelse = this.anmeldelse,
+                Tid = this.Tid
+            };
+            Bandliste.Add(addBand);
 
-            //tempBand.anmeldelse = NewBand.anmeldelse;
-            //tempBand.BandNavn = NewBand.BandNavn;
-            //tempBand.Scene = NewBand.Scene;
-            //tempBand.Tid = NewBand.Tid;
-
-            Bandliste.Add(NewBand);
-
-            NewBand = new Model.Band();
         }
 
         public void DeleteBand()

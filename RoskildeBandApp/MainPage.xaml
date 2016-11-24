@@ -23,12 +23,14 @@
                 </TextBlock>
             </DataTemplate>-->
         </ListView>
-        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="371.333,152,0,0" TextWrapping="Wrap" Text="{Binding NewBand.BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1"/>
+        <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="371.333,152,0,0" TextWrapping="Wrap" Text="{Binding BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1"/>
         <Button x:Name="add" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="513.333,437,0,0" VerticalAlignment="Top" Command="{Binding AddBandCommand}" Height="32" Width="89"/>
         <Button x:Name="slet" Content="Slet" Grid.Column="1" HorizontalAlignment="Left" Margin="371.333,437,0,0" VerticalAlignment="Top" Height="32" Command="{Binding DeleteBandCommand, Mode=OneWay}" Width="84"/>
         <Button x:Name="save" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="371.333,567,0,0" VerticalAlignment="Top" Width="125" Command="{Binding SaveBandCommand, Mode=OneWay}"/>
         <Button x:Name="hent" Content="Hent" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="578.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding HentDataCommand, Mode=OneWay}"/>
         <Button x:Name="Clear" Content="Clear liste" Grid.Column="1" HorizontalAlignment="Left" Height="70" Margin="187.333,567,0,0" VerticalAlignment="Top" Width="116" Command="{Binding DeleteAllBandCommand, Mode=OneWay}"/>
-        <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="629.333,180,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="187" PlaceholderText="Scene"/>
+        <TextBox x:Name="TBScene" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="629.333,180,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="187" PlaceholderText="Scene"/>
+        <TextBox x:Name="TBAnmeldelse" Grid.Column="1" HorizontalAlignment="Left" Height="104" Margin="371.333,280,0,0" TextWrapping="Wrap" Text="{Binding anmeldelse, Mode=TwoWay}" VerticalAlignment="Top" Width="445" PlaceholderText="Anmeldelse"/>
+        <TimePicker Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="842.333,180,0,0" VerticalAlignment="Top" Width="72"/>
     </Grid>
 </Page>
