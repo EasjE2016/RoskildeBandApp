@@ -7,6 +7,7 @@ using System.ComponentModel;
 using RoskildeBandApp.Model;
 using Newtonsoft.Json;
 using Windows.Storage;
+using Windows.UI.Popups;
 
 namespace RoskildeBandApp.ModelView
 {
@@ -47,9 +48,9 @@ namespace RoskildeBandApp.ModelView
                 OnPropertyChanged(nameof(SelectedBand));
             }
         }
-
-
         public Band NewBand { get; set; }
+
+
         public RelayCommand DeleteBandCommand { get; private set; }
         public RelayCommand SaveBandCommand { get; private set; }
         public RelayCommand HentBandCommand { get; private set; }
@@ -58,7 +59,7 @@ namespace RoskildeBandApp.ModelView
 
         StorageFolder localfolder = null;
 
-        private readonly string filnavn = "JsonText.json";
+        private readonly string filnavn = "JsonText.jsonNY1";
 
         public BandViewModel()
         {
@@ -82,12 +83,19 @@ namespace RoskildeBandApp.ModelView
 
         public async void HentdataFraDiskAsync()
         {
-            this.Bandliste.Clear();
+            try
+            {
+                StorageFile file = await localfolder.GetFileAsync(filnavn);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                this.Bandliste.Clear();
+                Bandliste.IndsætJson(jsonText);
+            }
+            catch (Exception)
+            {
+                MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller har du ikke gemt ?", "File not found");
+                await messageDialog.ShowAsync();
+            }
 
-            StorageFile file = await localfolder.GetFileAsync(filnavn);
-            string jsonText = await FileIO.ReadTextAsync(file);
-
-            Bandliste.IndsætJson(jsonText);
         }
 
         /// <summary>
@@ -112,7 +120,16 @@ namespace RoskildeBandApp.ModelView
             Bandliste.Remove(SelectedBand);
         }
 
-   
+        private class MessageDialogHelper
+        {
+            public static async void Show(string content, string title)
+            {
+                MessageDialog messageDialog = new MessageDialog(content, title);
+                await messageDialog.ShowAsync();
+            }
+        }
+
+
 
     }
 }
