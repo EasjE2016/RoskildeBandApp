@@ -48,8 +48,14 @@ namespace RoskildeBandApp.ModelView
                 OnPropertyChanged(nameof(SelectedBand));
             }
         }
-        public Band NewBand { get; set; }
+       // public Band NewBand { get; set; }
 
+        public string BandNavn { get; set; }
+        public string Scene { get; set; }
+        public DateTime Tid { get; set; }
+        public string anmeldelse { get; set; }
+
+        public string Band { get; set; }
 
         public RelayCommand DeleteBandCommand { get; private set; }
         public RelayCommand SaveBandCommand { get; private set; }
@@ -110,9 +116,36 @@ namespace RoskildeBandApp.ModelView
             await FileIO.WriteTextAsync(file, jsonText);
         }
 
+        public bool Findes(string navn)
+        {
+            foreach (var band in Bandliste)
+            {
+                if (band.BandNavn == navn)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        /// <summary>
+        /// Tak til Filips far :-)
+        /// </summary>
         public void AddNewBand()
         {
+            
+            Band tempBand = new Band();
+            tempBand.BandNavn = this.BandNavn;
+
+            //tempBand.anmeldelse = NewBand.anmeldelse;
+            //tempBand.BandNavn = NewBand.BandNavn;
+            //tempBand.Scene = NewBand.Scene;
+            //tempBand.Tid = NewBand.Tid;
+
             Bandliste.Add(NewBand);
+
+            NewBand = new Model.Band();
         }
 
         public void DeleteBand()
