@@ -54,7 +54,7 @@ namespace RoskildeBandApp.ModelView
         public RelayCommand SaveBandCommand { get; private set; }
         public RelayCommand HentBandCommand { get; private set; }
         public RelayCommand DeleteAllBandCommand { get; private set; }
-
+        public RelayCommand HentDataCommand { get; private set; }
 
         StorageFolder localfolder = null;
 
@@ -73,10 +73,17 @@ namespace RoskildeBandApp.ModelView
             //bruger en anonym metode i min relaycommand
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
 
+            HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
+
             localfolder = ApplicationData.Current.LocalFolder;
 
         }
 
+
+        public async void HentdataFraDiskAsync()
+        {
+
+        }
 
         /// <summary>
         /// Gemmer json data fra liste i localfolder
