@@ -39,5 +39,21 @@ namespace RoskildeBandApp.Model
             return json;
         }
 
+        /// <summary>
+        /// metode som modtager en string af json og desorialiserer til objekter af band
+        /// </summary>
+        /// <param name="jsonText"></param>
+        public void IndsætJson(string jsonText)
+        {
+            List<Band> nyListe = JsonConvert.DeserializeObject<List<Band>>(jsonText);
+
+            foreach (var band in nyListe)
+            {
+                this.Add(band);
+            }
+
+
+        }
+
     }
 }
