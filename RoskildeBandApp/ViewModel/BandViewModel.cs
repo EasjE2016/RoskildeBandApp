@@ -32,16 +32,15 @@ namespace RoskildeBandApp.ModelView
 
         private string _listeJsonText;
 
-        public string ListeJsonText
+        public string jsonText
         {
             get { return _listeJsonText; }
             set
             {
                 _listeJsonText = value;
-                OnPropertyChanged(nameof(ListeJsonText));
+                OnPropertyChanged(nameof(jsonText));
             }
         }
-
 
         private Band selectedBand;
         public Band SelectedBand
@@ -54,11 +53,55 @@ namespace RoskildeBandApp.ModelView
             }
         }
 
-        public string BandNavn { get; set; }
-        public string Scene { get; set; }
+        private List<string> jsonstexts;
+
+        public List<string> JsonTexts
+        {
+            get { return jsonstexts; }
+            set
+            {
+                jsonstexts = value;
+                OnPropertyChanged(nameof(JsonTexts));
+            }
+        }
+
+        private string bandNavn;
+
+        public string BandNavn
+        {
+            get { return bandNavn; }
+            set
+            {
+                bandNavn = value;
+                OnPropertyChanged(nameof(BandNavn));
+            }
+        }
+
+        private string _scene;
+
+        public string Scene
+        {
+            get { return _scene; }
+            set
+            {
+                _scene = value;
+                OnPropertyChanged(nameof(Scene));
+            }
+        }
+
+        private string _anmeldelse;
+        public string Anmeldelse
+        {
+            get { return _anmeldelse; }
+            set
+            {
+                _anmeldelse = value;
+                OnPropertyChanged(nameof(Anmeldelse));
+            }
+        }
+
         public DateTime Tid { get; set; }
-        public string anmeldelse { get; set; }
-        public string Band { get; set; }
+        //public string Band { get; set; }
 
         public RelayCommand DeleteBandCommand { get; private set; }
         public RelayCommand SaveBandCommand { get; private set; }
@@ -81,12 +124,21 @@ namespace RoskildeBandApp.ModelView
             DeleteBandCommand = new RelayCommand(DeleteBand,DeleteBanCanExecute);
             SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
 
-            //bruger en anonym metode i min relaycommand
+            //bruger en anonym metode i min relaycommand DeleteAllBandCommand
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear(),()=>this.Bandliste.Count > 0);
+
             HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
             localfolder = ApplicationData.Current.LocalFolder;
 
-            this.ListeJsonText = this.Bandliste.GetJson();
+            this.jsonText = this.Bandliste.GetJson();
+
+
+            //splitter json text strengen på "}"
+            string delimStr = "}";
+            char[] delimiter = delimStr.ToCharArray();
+
+            this.JsonTexts = this.jsonText.Split(delimiter).ToList();
+
         }
 
         /// <summary>
@@ -127,9 +179,9 @@ namespace RoskildeBandApp.ModelView
         /// </summary>
         public async void GemDataTilDiskAsync()
         {
-            this.ListeJsonText = this.Bandliste.GetJson();
+            this.jsonText = this.Bandliste.GetJson();
             StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, this.ListeJsonText);
+            await FileIO.WriteTextAsync(file, this.jsonText);
         }
 
 
@@ -145,16 +197,20 @@ namespace RoskildeBandApp.ModelView
             {
                 BandNavn = this.BandNavn,
                 Scene = this.Scene,
-                anmeldelse = this.anmeldelse,
+                anmeldelse = this.Anmeldelse,
              };
             Bandliste.Add(addBand);
-            this.ListeJsonText = this.Bandliste.GetJson();
+            this.jsonText = this.Bandliste.GetJson();
+            this.BandNavn = string.Empty;
+            this.Anmeldelse = string.Empty;
+            this.Scene = string.Empty;
+            
         }
 
         public void DeleteBand()
         {
             Bandliste.Remove(SelectedBand);
-            this.ListeJsonText = this.Bandliste.GetJson();
+            this.jsonText = this.Bandliste.GetJson();
         }
 
         protected virtual void OnPropertyChanged(string propertyname)
