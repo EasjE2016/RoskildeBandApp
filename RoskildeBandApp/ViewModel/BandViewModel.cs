@@ -8,6 +8,8 @@ using RoskildeBandApp.Model;
 using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.UI.Popups;
+using System.Windows.Input;
+
 
 namespace RoskildeBandApp.ModelView
 {
@@ -103,11 +105,11 @@ namespace RoskildeBandApp.ModelView
         public DateTime Tid { get; set; }
         //public string Band { get; set; }
 
-        public RelayCommand DeleteBandCommand { get; private set; }
-        public RelayCommand SaveBandCommand { get; private set; }
-        public RelayCommand HentBandCommand { get; private set; }
-        public RelayCommand DeleteAllBandCommand { get; private set; }
-        public RelayCommand HentDataCommand { get; private set; }
+        public ICommand DeleteBandCommand { get; private set; }
+        public ICommand SaveBandCommand { get; private set; }
+        public ICommand HentBandCommand { get; private set; }
+        public ICommand DeleteAllBandCommand { get; private set; }
+        public ICommand HentDataCommand { get; private set; }
 
         StorageFolder localfolder = null;
         private readonly string filnavn = "JsonText.json";
