@@ -16,7 +16,7 @@ namespace RoskildeBandApp.ModelView
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public AddBandCommand AddBandCommand { get; set; }
+        public RelayCommand AddBandCommand { get; set; }
 
         //i et backing field for en property er det ok at bruge _(underscore)
         private BandList _bandliste;
@@ -120,7 +120,7 @@ namespace RoskildeBandApp.ModelView
             Tid = new DateTime();
             Bandliste = new BandList();
             selectedBand = new Band();
-            AddBandCommand = new AddBandCommand(AddNewBand);
+            AddBandCommand = new RelayCommand(AddNewBand,AddBandCanExecute);
             DeleteBandCommand = new RelayCommand(DeleteBand,DeleteBanCanExecute);
             SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
 
@@ -131,7 +131,7 @@ namespace RoskildeBandApp.ModelView
             localfolder = ApplicationData.Current.LocalFolder;
 
             this.jsonText = this.Bandliste.GetJson();
-
+            this.bandNavn = string.Empty;
 
             //splitter json text strengen på "}"
             string delimStr = "}";
@@ -150,6 +150,11 @@ namespace RoskildeBandApp.ModelView
         private bool DeleteBanCanExecute()
         {
             return this.Bandliste.Count > 0;
+        }
+
+        private bool AddBandCanExecute()
+        {
+            return this.bandNavn != string.Empty;
         }
 
         /// <summary>
