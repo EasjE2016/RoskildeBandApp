@@ -78,15 +78,26 @@ namespace RoskildeBandApp.ModelView
             Bandliste = new BandList();
             selectedBand = new Band();
             AddBandCommand = new AddBandCommand(AddNewBand);
-            DeleteBandCommand = new RelayCommand(DeleteBand);
+            DeleteBandCommand = new RelayCommand(DeleteBand,DeleteBanCanExecute);
             SaveBandCommand = new RelayCommand(GemDataTilDiskAsync);
 
             //bruger en anonym metode i min relaycommand
-            DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
+            DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear(),()=>this.Bandliste.Count > 0);
             HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
             localfolder = ApplicationData.Current.LocalFolder;
 
             this.ListeJsonText = this.Bandliste.GetJson();
+        }
+
+        /// <summary>
+        /// metode som returnerer false hvis listen er tom
+        /// bruges i mit kald til relaycommand så kanppen "Slet"
+        /// er inaktiv hvis listen er tom
+        /// </summary>
+        /// <returns></returns>
+        private bool DeleteBanCanExecute()
+        {
+            return this.Bandliste.Count > 0;
         }
 
         /// <summary>

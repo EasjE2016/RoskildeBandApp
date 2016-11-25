@@ -51,6 +51,7 @@ namespace RoskildeBandApp
             this.methodToDetectCanExecute = methodToDetectCanExecute;
             if(methodToDetectCanExecute != null)
             {
+                this.canExecuteChangedEventTimer = new DispatcherTimer();
                 this.canExecuteChangedEventTimer.Tick += canExecuteChangedEventTimer_Tick;
                 this.canExecuteChangedEventTimer.Interval = new TimeSpan(0, 0, 1);
                 this.canExecuteChangedEventTimer.Start();
