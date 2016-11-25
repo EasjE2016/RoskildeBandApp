@@ -16,8 +16,8 @@ namespace RoskildeBandApp
         /// </summary>
         public class RelayCommand : ICommand
         {
-            private readonly Action _execute;
-            private readonly Func<bool> _canExecute;
+            private Action methodToExecute;
+            private readonly Func<bool> methodToDetectCanExecute;
 
             /// <summary>
             /// Raised when RaiseCanExecuteChanged is called.
@@ -37,14 +37,14 @@ namespace RoskildeBandApp
             /// <summary>
             /// Creates a new command.
             /// </summary>
-            /// <param name="execute">The execution logic.</param>
-            /// <param name="canExecute">The execution status logic.</param>
-            public RelayCommand(Action execute, Func<bool> canExecute)
+            /// <param name="methodToExecute">The execution logic.</param>
+            /// <param name="methodToDetectCanExecute">The execution status logic.</param>
+            public RelayCommand(Action methodToExecute, Func<bool> methodToDetectCanExecute)
             {
-                if (execute == null)
+                if (methodToExecute == null)
                     throw new ArgumentNullException("execute");
-                _execute = execute;
-                _canExecute = canExecute;
+                this.methodToExecute = methodToExecute;
+                this.methodToDetectCanExecute = methodToDetectCanExecute;
             }
 
             /// <summary>
@@ -56,8 +56,8 @@ namespace RoskildeBandApp
             /// <returns>true if this command can be executed; otherwise, false.</returns>
             public bool CanExecute(object parameter)
             {
-                return true;
-                //return _canExecute == null ? true : _canExecute();
+                //return true;
+                return methodToDetectCanExecute == null ? true : methodToDetectCanExecute();
             }
 
             /// <summary>
@@ -68,7 +68,7 @@ namespace RoskildeBandApp
             /// </param>
             public void Execute(object parameter)
             {
-                _execute();
+                methodToExecute();
             }
 
             /// <summary>
