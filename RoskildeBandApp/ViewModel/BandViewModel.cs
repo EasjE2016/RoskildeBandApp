@@ -30,7 +30,6 @@ namespace RoskildeBandApp.ModelView
             }
         }
 
-
         private Band selectedBand;
 
         public Band SelectedBand
@@ -56,6 +55,9 @@ namespace RoskildeBandApp.ModelView
         StorageFolder localfolder = null;
         private readonly string filnavn = "JsonText.json";
 
+        /// <summary>
+        /// default constructor 
+        /// </summary>
         public BandViewModel()
         {
             Tid = new DateTime();
@@ -71,7 +73,11 @@ namespace RoskildeBandApp.ModelView
             localfolder = ApplicationData.Current.LocalFolder;
         }
 
-
+        /// <summary>
+        /// Henter data fra localfolder
+        /// Der skrives en fejlmeddelse i en 
+        /// messageDialog hvis filen ikke findes
+        /// </summary>
         public async void HentdataFraDiskAsync()
         {
             try
