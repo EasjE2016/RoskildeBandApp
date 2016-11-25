@@ -23,7 +23,7 @@
             <ColumnDefinition Width="209*"/>
             <ColumnDefinition Width="1231*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="362" Margin="129,68,0,0" VerticalAlignment="Top" Width="213" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="198" Margin="129,68,0,0" VerticalAlignment="Top" Width="213" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B"/>
         <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="171.333,40,0,0" TextWrapping="Wrap" Text="{Binding BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1" Opacity="0.9" BorderBrush="#FFB96737" Foreground="#FF268017" Background="#FFFB761B"/>
         <Button x:Name="add" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="171.333,282,0,0" VerticalAlignment="Top" Command="{Binding AddBandCommand}" Height="57" Width="89" FontWeight="Bold" FontSize="18">
             <Button.Background>
@@ -35,17 +35,17 @@
                 <ImageBrush Stretch="Uniform" ImageSource="Assets/Basic_Canopy_orange.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="save" Content="Save" HorizontalAlignment="Left" Height="51" Margin="33.333,435,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.Column="1">
+        <Button x:Name="save" Content="Save" HorizontalAlignment="Left" Height="51" Margin="33.333,275,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.Column="1">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="hent" Content="Hent" HorizontalAlignment="Left" Height="51" Margin="129,435,0,0" VerticalAlignment="Top" Width="100" Command="{Binding HentDataCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2">
+        <Button x:Name="hent" Content="Hent" HorizontalAlignment="Left" Height="51" Margin="129,275,0,0" VerticalAlignment="Top" Width="100" Command="{Binding HentDataCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_orange.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="Clear" Content="Clear liste" HorizontalAlignment="Left" Height="51" Margin="24,379,0,0" VerticalAlignment="Top" Width="105" Command="{Binding DeleteAllBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16">
+        <Button x:Name="Clear" Content="Clear liste" HorizontalAlignment="Left" Height="51" Margin="24,209,0,0" VerticalAlignment="Top" Width="105" Command="{Binding DeleteAllBandCommand, Mode=OneWay}" FontWeight="Bold" FontSize="16">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="Assets/Basic_Canopy_white.png"/>
             </Button.Background>
@@ -53,5 +53,6 @@
         <TextBox x:Name="TBScene" Grid.Column="1" HorizontalAlignment="Left" Height="76" Margin="171.333,177,0,0" TextWrapping="Wrap" Text="{Binding Scene, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="Scene" Background="#FFFB761B"/>
         <TextBox x:Name="TBAnmeldelse" Grid.Column="1" HorizontalAlignment="Left" Height="185" Margin="428.333,68,0,0" TextWrapping="Wrap" Text="{Binding anmeldelse, Mode=TwoWay}" VerticalAlignment="Top" Width="445" PlaceholderText="Anmeldelse" Background="#FFFB761B" Foreground="WhiteSmoke" BorderBrush="#FFD31616"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="71" Margin="345.333,282,0,0" TextWrapping="Wrap" Text="{Binding SelectedBand, Mode=TwoWay}" VerticalAlignment="Top" Width="426" FontSize="22" FontFamily="Yu Gothic UI Semibold" Grid.Column="1" FontWeight="Bold" SelectionHighlightColor="#FF28628F" Foreground="#FFFB761B"/>
+        <TextBlock x:Name="textBlock1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="129,339,0,0" TextWrapping="Wrap" Text="{Binding ListeJsonText, Mode=TwoWay}" VerticalAlignment="Top" Width="340" SelectionHighlightColor="#FFD70000" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
     </Grid>
 </Page>

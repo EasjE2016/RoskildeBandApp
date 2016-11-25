@@ -30,12 +30,26 @@ namespace RoskildeBandApp.ModelView
             }
         }
 
-        private Band selectedBand;
+        private string _listeJsonText;
 
+        public string ListeJsonText
+        {
+            get { return _listeJsonText; }
+            set
+            {
+                _listeJsonText = value;
+                OnPropertyChanged(nameof(ListeJsonText));
+            }
+        }
+
+
+        private Band selectedBand;
         public Band SelectedBand
         {
             get { return selectedBand; }
-            set { selectedBand = value;
+            set
+            {
+                selectedBand = value;
                 OnPropertyChanged(nameof(SelectedBand));
             }
         }
@@ -71,6 +85,8 @@ namespace RoskildeBandApp.ModelView
             DeleteAllBandCommand = new RelayCommand(()=>this.Bandliste.Clear());
             HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
             localfolder = ApplicationData.Current.LocalFolder;
+
+            this.ListeJsonText = this.Bandliste.GetJson();
         }
 
         /// <summary>
@@ -100,9 +116,9 @@ namespace RoskildeBandApp.ModelView
         /// </summary>
         public async void GemDataTilDiskAsync()
         {
-            string jsonText = this.Bandliste.GetJson();
+            this.ListeJsonText = this.Bandliste.GetJson();
             StorageFile file = await localfolder.CreateFileAsync(filnavn, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, jsonText);
+            await FileIO.WriteTextAsync(file, this.ListeJsonText);
         }
 
 
@@ -121,12 +137,13 @@ namespace RoskildeBandApp.ModelView
                 anmeldelse = this.anmeldelse,
              };
             Bandliste.Add(addBand);
-
+            this.ListeJsonText = this.Bandliste.GetJson();
         }
 
         public void DeleteBand()
         {
             Bandliste.Remove(SelectedBand);
+            this.ListeJsonText = this.Bandliste.GetJson();
         }
 
         protected virtual void OnPropertyChanged(string propertyname)
