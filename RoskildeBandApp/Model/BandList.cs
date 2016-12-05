@@ -19,13 +19,13 @@ namespace RoskildeBandApp.Model
 
 
             this.Add(
-                new Band() { anmeldelse = "",
+                new Band() { Anmeldelse = "Wauuvvv ******",
                             BandNavn = "Police",
                             Scene = "Orange",
                             Tid = DateTime.Now });
 
-            this.Add(new Band() { anmeldelse = "", BandNavn = "U2", Scene = "Orange", Tid = DateTime.Now });
-            this.Add(new Band() {anmeldelse = "", BandNavn = "Pink Floyd", Scene = "Orange", Tid = new DateTime(2010,5,6) });
+            this.Add(new Band() { Anmeldelse = "Rigtig God ****", BandNavn = "U2", Scene = "Orange", Tid = DateTime.Now });
+            this.Add(new Band() {Anmeldelse = "Fantastisk *****", BandNavn = "Pink Floyd", Scene = "Orange", Tid = new DateTime(2010,5,6) });
 
         }
 

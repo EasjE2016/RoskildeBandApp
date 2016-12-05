@@ -23,7 +23,8 @@
             <ColumnDefinition Width="209*"/>
             <ColumnDefinition Width="1231*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="198" Margin="129,68,0,0" VerticalAlignment="Top" Width="213" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="198" Margin="129,68,0,0" VerticalAlignment="Top" Width="213" ItemsSource="{Binding Bandliste}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B">
+        </ListView>
         <TextBox x:Name="TBBandnavn" HorizontalAlignment="Left" Height="104" Margin="171.333,40,0,0" TextWrapping="Wrap" Text="{Binding BandNavn, Mode=TwoWay}" VerticalAlignment="Top" Width="231" PlaceholderText="BandNavn" ToolTipService.ToolTip="Her skal du indtaste Bandnavn" Header="Band Navn" Grid.Column="1" Opacity="0.9" BorderBrush="#FFB96737" Foreground="#FF268017" Background="#FFFB761B"/>
         <Button x:Name="add" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="171.333,282,0,0" VerticalAlignment="Top" Command="{Binding AddBandCommand}" Height="57" Width="89" FontWeight="Bold" FontSize="18" Foreground="White">
             <Button.Background>
@@ -54,6 +55,35 @@
         <TextBox x:Name="TBAnmeldelse" Grid.Column="1" HorizontalAlignment="Left" Height="185" Margin="428.333,68,0,0" TextWrapping="Wrap" Text="{Binding anmeldelse, Mode=TwoWay}" VerticalAlignment="Top" Width="445" PlaceholderText="Anmeldelse" Background="#FFFB761B" Foreground="WhiteSmoke" BorderBrush="#FFD31616"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="71" Margin="345.333,282,0,0" TextWrapping="Wrap" Text="{Binding SelectedBand, Mode=TwoWay}" VerticalAlignment="Top" Width="426" FontSize="22" FontFamily="Yu Gothic UI Semibold" Grid.Column="1" FontWeight="Bold" SelectionHighlightColor="#FF28628F" Foreground="#FFFB761B"/>
         <ListView x:Name="listjson" HorizontalAlignment="Left" Height="112" Margin="26,636,0,0" VerticalAlignment="Top" Width="647" ItemsSource="{Binding JsonTexts}" SelectedItem="{Binding SelectedBand, Mode=TwoWay}" Grid.ColumnSpan="2" Background="#FFFB761B" Header="Listen som json output"/>
+        <ListBox x:Name="listBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="267" Margin="116,344,0,0" VerticalAlignment="Top" Width="269" ItemsSource="{Binding Bandliste, Mode=TwoWay}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
+          Padding="5" Margin="5">
+
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Band Navn: "/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path= BandNavn}" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Scene: "/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Scene}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=Anmeldelse}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <!--<TextBlock x:Name="textBlock1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="188,339,0,0" TextWrapping="Wrap" Text="{Binding ListeJsonText, Mode=TwoWay}" VerticalAlignment="Top" Width="281" SelectionHighlightColor="#FFD70000" FontWeight="Bold" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>-->
     </Grid>
 </Page>

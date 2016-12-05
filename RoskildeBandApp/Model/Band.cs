@@ -14,12 +14,12 @@ namespace RoskildeBandApp.Model
         public string BandNavn { get; set; }
         public string Scene { get; set; }
         public DateTime Tid { get; set; }
-        public string anmeldelse { get; set; }
+        public string Anmeldelse { get; set; }
 
 
         public override string ToString()
         {
-            return BandNavn + " " + Scene; 
+            return BandNavn + " " + Scene + " " +Anmeldelse;
         }
     }
 }

@@ -204,7 +204,7 @@ namespace RoskildeBandApp.ModelView
             {
                 BandNavn = this.BandNavn,
                 Scene = this.Scene,
-                anmeldelse = this.Anmeldelse,
+                Anmeldelse = this.Anmeldelse,
              };
             Bandliste.Add(addBand);
             this.jsonText = this.Bandliste.GetJson();
