@@ -9,14 +9,13 @@ using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.UI.Popups;
 using System.Windows.Input;
-
+using System.Collections.ObjectModel;
 
 namespace RoskildeBandApp.ModelView
 {
     class BandViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         public RelayCommand AddBandCommand { get; set; }
 
@@ -28,7 +27,7 @@ namespace RoskildeBandApp.ModelView
             set
             {
                 _bandliste = value;
-                OnPropertyChanged(nameof(Bandliste));
+                //OnPropertyChanged(nameof(Bandliste));
             }
         }
 
@@ -55,9 +54,9 @@ namespace RoskildeBandApp.ModelView
             }
         }
 
-        private List<string> jsonstexts;
+        private ObservableCollection<string> jsonstexts;
 
-        public List<string> JsonTexts
+        public ObservableCollection<string> JsonTexts
         {
             get { return jsonstexts; }
             set
@@ -105,7 +104,7 @@ namespace RoskildeBandApp.ModelView
         public DateTime Tid { get; set; }
         //public string Band { get; set; }
 
-        public ICommand DeleteBandCommand { get; private set; }
+        public ICommand DeleteBandCommand { get;/* private set;*/ }
         public ICommand SaveBandCommand { get; private set; }
         public ICommand HentBandCommand { get; private set; }
         public ICommand DeleteAllBandCommand { get; private set; }
@@ -131,16 +130,26 @@ namespace RoskildeBandApp.ModelView
 
             HentDataCommand = new RelayCommand(HentdataFraDiskAsync);
             localfolder = ApplicationData.Current.LocalFolder;
+            this.JsonTexts = new ObservableCollection<string>();
 
+            VisJson();
+        }
+
+        public void VisJson()
+        {
             this.jsonText = this.Bandliste.GetJson();
-            this.bandNavn = string.Empty;
 
             //splitter json text strengen på "}"
             string delimStr = "}";
             char[] delimiter = delimStr.ToCharArray();
 
-            this.JsonTexts = this.jsonText.Split(delimiter).ToList();
-
+            List<string> tempJsonList = new List<string>();
+            tempJsonList = this.jsonText.Split(delimiter).ToList();
+            //this.JsonTexts = tempJsonList. 
+            foreach (var json in tempJsonList)
+            {
+                this.JsonTexts.Add(json);
+            }
         }
 
         /// <summary>

@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace RoskildeBandApp.Model
 {
-    public class BandList : ObservableCollection<Band>
+    public class BandList : ItemsChangeObservableCollection<Band> 
     {
+
         public BandList()
             :base()
         {
@@ -54,6 +56,11 @@ namespace RoskildeBandApp.Model
         }
 
 
+        /// <summary>
+        /// metode til at finde om et band allerede findes i listen
+        /// </summary>
+        /// <param name="navn"></param>
+        /// <returns></returns>
         public bool FindesNavn(string navn)
         {
             foreach (var band in this)
@@ -65,6 +72,5 @@ namespace RoskildeBandApp.Model
             }
             return false;
         }
-
     }
 }
